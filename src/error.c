@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.h                                           :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/08 15:06:43 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/02 16:13:17 by idunaver         ###   ########.fr       */
+/*   Created: 2019/10/02 16:09:46 by idunaver          #+#    #+#             */
+/*   Updated: 2019/10/02 16:11:15 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEM_IN_H
-# define LEM_IN_H
+#include "lem_in.h"
 
-# include "libft.h"
-# include <stdio.h>
-# include <limits.h>
-# include <fcntl.h>
-
-void	error(void);
-
-#endif
+void    error(void)
+{
+    ft_putendl("Error");
+    exit(EXIT_FAILURE);
+}

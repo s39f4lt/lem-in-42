@@ -1,23 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.h                                           :+:      :+:    :+:   */
+/*   reading_file.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/08 15:06:43 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/02 16:13:17 by idunaver         ###   ########.fr       */
+/*   Created: 2019/10/02 16:08:29 by idunaver          #+#    #+#             */
+/*   Updated: 2019/10/02 16:08:36 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEM_IN_H
-# define LEM_IN_H
+#include "lem_in.h"
 
-# include "libft.h"
-# include <stdio.h>
-# include <limits.h>
-# include <fcntl.h>
-
-void	error(void);
-
-#endif

@@ -1,14 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reading_file.c                                     :+:      :+:    :+:   */
+/*   get_node.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rgendry <rgendry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/02 16:08:29 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/02 16:08:36 by idunaver         ###   ########.fr       */
+/*   Created: 2019/10/02 20:25:17 by rgendry           #+#    #+#             */
+/*   Updated: 2019/10/02 20:32:10 by rgendry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
+void	get_node(char *line, t_lem *lem)
+{
+	char	**node;
+
+	node = ft_strsplit(line, ' ');
+	if ()
+}

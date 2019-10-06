@@ -6,7 +6,7 @@
 #    By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/08 14:50:16 by idunaver          #+#    #+#              #
-#    Updated: 2019/10/02 16:34:26 by idunaver         ###   ########.fr        #
+#    Updated: 2019/10/06 21:01:57 by idunaver         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,12 @@ HEADER = -I ./include
 HEADER_LIBFT = -I ./libft/include -I ./libft/src/ft_printf/include
 FLAGS = -Wall -Wextra -Werror -g
 
-LEM-IN = lem_in
+LEM-IN = lem-in
 SRC_LEM-IN_NAME = main.c \
-				  error.c
+				  error.c \
+				  validation.c \
+				  get_data.c
+
 OBJ_LEM-IN_NAME = $(SRC_LEM-IN_NAME:.c=.o);
 SRC_LEM-IN = $(addprefix $(OBJDIR)/, $(SRC_LEM-IN_NAME))
 OBJ_LEM-IN = $(addprefix $(OBJDIR)/, $(OBJ_LEM-IN_NAME))
@@ -36,7 +39,7 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c include/lem_in.h
 	@gcc $(FLAGS) $(HEADER_LIBFT) $(HEADER) -o $@ -c $<
 
 libft:
-	@make -C $(LIBDIR)	
+	@make -C $(LIBDIR)
 
 clean:
 	@make clean -C $(LIBDIR)

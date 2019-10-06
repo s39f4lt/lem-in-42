@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rgendry <rgendry@student.42.fr>            +#+  +:+       +#+         #
+#    By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/08 14:50:16 by idunaver          #+#    #+#              #
-#    Updated: 2019/10/02 17:32:09 by rgendry          ###   ########.fr        #
+#    Updated: 2019/10/06 21:01:57 by idunaver         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ HEADER = -I ./include
 HEADER_LIBFT = -I ./libft/include -I ./libft/src/ft_printf/include
 FLAGS = -Wall -Wextra -Werror -g
 
-LEM-IN = lem_in
+LEM-IN = lem-in
 SRC_LEM-IN_NAME = main.c \
 				  error.c \
 				  validation.c \

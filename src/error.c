@@ -6,14 +6,14 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 16:09:46 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/02 16:11:15 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/10/07 19:26:54 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void    error(void)
+void	error(void)
 {
-    ft_putendl("Error");
-    exit(EXIT_FAILURE);
+	ft_putendl("Error");
+	exit(EXIT_FAILURE);
 }

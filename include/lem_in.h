@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 15:06:43 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/07 18:47:31 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/10/07 19:53:00 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,9 @@ t_node				*init_node(char *name, int count_connect);
 void				free_nodes(t_node *nodes);
 void				get_ants(t_lem_arifmetic *env_math);
 int					validation_of_ants(char *line);
+void				quick_sort(int *av, int left, int right, int len);
+int					search_index(int *av, int number, int len);
+int					quick_select(int *av, int start, int medium, int end);
+int					check_repeat_coord(int *x, int *y);
 
 #endif

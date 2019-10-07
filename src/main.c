@@ -6,13 +6,13 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 15:56:58 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/07 17:06:13 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/10/07 19:52:48 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
 int		main(void)
-{	
+{
 	return (0);
 }

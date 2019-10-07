@@ -6,11 +6,29 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 20:24:38 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/07 21:09:53 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/10/07 21:32:46 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+int		count_links(t_links *links)
+{
+	int 	count;
+	t_links	*tmp;
+
+	tmp = NULL;
+	count = 0;
+	if (!links)
+		return (0);
+	tmp = links;
+	while (tmp->next)
+	{
+		tmp = tmp->next;
+		count++;
+	}
+	return (count);
+}
 
 void	free_links(t_links *links)
 {

@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 15:06:43 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/07 21:10:08 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/10/07 21:33:08 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,6 @@ int						check_repeat_coord(int *x, int *y);
 t_links					*init_links(char **links);
 void					add_links(t_links *begin_list, char **links);
 void					free_links(t_links *links);
+int						count_links(t_links *links);
 
 #endif

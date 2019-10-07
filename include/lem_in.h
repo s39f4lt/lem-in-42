@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 15:06:43 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/06 21:30:01 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/10/07 15:54:29 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,13 @@ typedef struct		s_link
 	struct s_link	*next;
 }					t_link;
 
-typedef struct		s_link
-{
-	int				v;
-	int				u;
-	double			dist;
-	struct s_link	*next;
-}					t_link;
+// typedef struct		s_link
+// {
+// 	int				v;
+// 	int				u;
+// 	double			dist;
+// 	struct s_link	*next;
+// }					t_link;
 
 typedef struct		s_path
 {
@@ -56,12 +56,6 @@ typedef struct		s_path
 	double			dist;
 	struct s_path	*next;
 }					t_path;
-
-typedef struct		s_cmt
-{
-	char			*comment;
-	struct s_cmt	*next;
-}					t_cmt;
 
 typedef struct		s_res
 {
@@ -76,7 +70,6 @@ typedef struct		s_env
 	t_link			*link;
 	t_path			**path;
 	t_res			*res_path;
-	t_cmt			*cmt;
 	int				ant;
 	int				cnt;
 	char			*start;

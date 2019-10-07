@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 15:06:43 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/07 18:15:03 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/10/07 18:47:31 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,8 @@ typedef struct		s_lem_arifmetic
 void				error(void);
 void				add_node(t_node *begin_list, char *name, int count_connect);
 t_node				*init_node(char *name, int count_connect);
+void				free_nodes(t_node *nodes);
+void				get_ants(t_lem_arifmetic *env_math);
+int					validation_of_ants(char *line);
 
 #endif

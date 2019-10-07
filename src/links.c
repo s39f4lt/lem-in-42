@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 20:24:38 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/07 20:57:24 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/10/07 21:09:53 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	free_links(t_links *links)
 	}
 }
 
-void	add_links(t_links *begin_list, char *links)
+void	add_links(t_links *begin_list, char **links)
 {
 	t_links *new_elem;
 	t_links	*current;
@@ -49,7 +49,7 @@ void	add_links(t_links *begin_list, char *links)
 	new_elem->prev = current;
 }
 
-t_links	*init_links(char *links)
+t_links	*init_links(char **links)
 {
 	t_links	*new_elem;
 

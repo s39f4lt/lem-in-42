@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 17:21:05 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/07 17:59:06 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/10/07 18:05:05 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	free_nodes(t_node *nodes)
 {
-	t_node	*tmp;
+	t_node	**tmp;
 
 	tmp = NULL;
 	while (nodes)

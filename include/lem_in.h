@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 15:06:43 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/07 20:59:08 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/10/07 21:01:58 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ typedef struct			s_node
 	struct s_node		**links;
 }						t_node;
 
-typedef struct      	s_links
+typedef struct			s_links
 {
-    char            	**link;
+	char				**link;
 	struct s_links		*next;
 	struct s_links		*prev;
-}                   	t_links;
+}						t_links;
 
 typedef struct			s_lem_arifmetic
 {

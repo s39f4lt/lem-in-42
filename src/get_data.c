@@ -6,7 +6,7 @@
 /*   By: rgendry <rgendry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 17:21:20 by rgendry           #+#    #+#             */
-/*   Updated: 2019/10/05 20:32:27 by rgendry          ###   ########.fr       */
+/*   Updated: 2019/10/08 20:20:43 by rgendry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	set_start(t_lem *lem)
 	}
 	if (check_node(data[0], lem))
 	{
-		add_node(create_node(data[0]), lem);
+		// add_node(create_node(data[0]), lem);
 		lem->start = ft_strdup(data[0]);
 	}
 	lem->size++;
@@ -56,7 +56,7 @@ void	set_end(t_lem *lem)
 	}
 	if (check_node(data[0], lem))
 	{
-		add_node(create_node(data[0]), lem);
+		// add_node(create_node(data[0]), lem);
 		lem->end = ft_strdup(data[0]);
 	}
 	lem->size++;
@@ -125,4 +125,6 @@ void	get_data(t_lem *lem)
 	}
 	if (!(lem->start) || !(lem->end) || !lem->links || !lem->nodes)
 		error();
+	add_node(create_node(lem->start), lem);
+	add_node(create_node(lem->end), lem);
 }

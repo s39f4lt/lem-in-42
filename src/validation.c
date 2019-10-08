@@ -6,7 +6,7 @@
 /*   By: rgendry <rgendry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 16:58:29 by rgendry           #+#    #+#             */
-/*   Updated: 2019/10/05 20:33:12 by rgendry          ###   ########.fr       */
+/*   Updated: 2019/10/08 20:45:28 by rgendry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ t_lem	*make_lem(void)
 	new->end = NULL;
 	new->nodes = NULL;
 	new->links = NULL;
+	new->index_map = NULL;
 	return (new);
 }
 
@@ -54,4 +55,5 @@ void	validation(void)
 	get_ants(lem);
 	get_data(lem);
 	print_lem(lem);
+	// index_map(lem);
 }

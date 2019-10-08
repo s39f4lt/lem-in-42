@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   free_arr.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rgendry <rgendry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/02 16:09:46 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/05 20:33:58 by rgendry          ###   ########.fr       */
+/*   Created: 2019/10/03 20:25:24 by rgendry           #+#    #+#             */
+/*   Updated: 2019/10/03 20:26:46 by rgendry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	error(void)
+void	free_arr(char ***arr)
 {
-	ft_putendl("Error");
-	exit(EXIT_FAILURE);
+	int	i;
+
+	i = 0;
+	while ((*arr)[i])
+	{
+		free((*arr)[i]);
+		(*arr)[i] = NULL;
+		i++;
+	}
+	free(*arr);
+	*arr = NULL;
 }

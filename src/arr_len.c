@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   arr_len.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rgendry <rgendry@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/02 16:09:46 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/05 20:33:58 by rgendry          ###   ########.fr       */
+/*   Created: 2019/10/03 19:12:13 by rgendry           #+#    #+#             */
+/*   Updated: 2019/10/03 19:12:33 by rgendry          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	error(void)
+int		arr_len(char **arr)
 {
-	ft_putendl("Error");
-	exit(EXIT_FAILURE);
+	int		i;
+
+	i = 0;
+	while (arr[i])
+		i++;
+	return (i);
 }

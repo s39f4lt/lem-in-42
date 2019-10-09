@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 15:06:43 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/07 21:33:08 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/10/09 16:23:16 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,27 @@ typedef struct			s_node
 	struct s_node		**links;
 }						t_node;
 
-typedef struct			s_links
+typedef struct      	s_links
 {
-	char				**link;
+    char            	**link;
 	struct s_links		*next;
 	struct s_links		*prev;
-}						t_links;
+}                   	t_links;
 
 typedef struct			s_lem_arifmetic
 {
-	char				**line;
+	char				*line;
 	int					count_ants;
 }						t_lem_arifmetic;
 
+typedef struct			s_queque
+{
+	t_node				*name;
+	struct s_queque		*next;
+}						t_queque;
+
 void					error(void);
-void					add_node(t_node *begin_list, char *name, \
+void					add_node(t_node **begin_list, char *name, \
 int count_connect);
 t_node					*init_node(char *name, int count_connect);
 void					free_nodes(t_node *nodes);
@@ -53,8 +59,9 @@ int						search_index(int *av, int number, int len);
 int						quick_select(int *av, int start, int medium, int end);
 int						check_repeat_coord(int *x, int *y);
 t_links					*init_links(char **links);
-void					add_links(t_links *begin_list, char **links);
+void					add_links(t_links **begin_list, char **links);
 void					free_links(t_links *links);
-int						count_links(t_links *links);
+void					lem_in(void);
+void					print_array(char **array);
 
 #endif

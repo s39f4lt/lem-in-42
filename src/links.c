@@ -3,32 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   links.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 20:24:38 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/07 21:32:46 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/10/08 16:44:03 by yperra-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-int		count_links(t_links *links)
-{
-	int 	count;
-	t_links	*tmp;
-
-	tmp = NULL;
-	count = 0;
-	if (!links)
-		return (0);
-	tmp = links;
-	while (tmp->next)
-	{
-		tmp = tmp->next;
-		count++;
-	}
-	return (count);
-}
 
 void	free_links(t_links *links)
 {
@@ -46,27 +28,6 @@ void	free_links(t_links *links)
 	}
 }
 
-void	add_links(t_links *begin_list, char **links)
-{
-	t_links *new_elem;
-	t_links	*current;
-
-	current = begin_list;
-	if (!begin_list)
-		error();
-	while (current->next)
-		current = current->next;
-	if (!(new_elem = (t_links *)malloc(sizeof(t_links))))
-	{
-		free_links(begin_list);
-		error();
-	}
-	new_elem->link = links;
-	current->next = new_elem;
-	new_elem->next = NULL;
-	new_elem->prev = current;
-}
-
 t_links	*init_links(char **links)
 {
 	t_links	*new_elem;
@@ -74,7 +35,30 @@ t_links	*init_links(char **links)
 	if (!(new_elem = (t_links *)malloc(sizeof(t_links))))
 		error();
 	new_elem->link = links;
+	// print_array(new_elem->link);
 	new_elem->next = NULL;
 	new_elem->prev = NULL;
 	return (new_elem);
+}
+
+void	add_links(t_links **begin_list, char **links)
+{
+	t_links *new_elem;
+	t_links	*current;
+
+	current = *begin_list;
+	if (!*begin_list)
+		error();
+	while (current->next)
+		current = current->next;
+	if (!(new_elem = (t_links *)malloc(sizeof(t_links))))
+	{
+		free_links(*begin_list);
+		error();
+	}
+	new_elem->link = links;
+	// print_array(new_elem->link);
+	current->next = new_elem;
+	new_elem->next = NULL;
+	new_elem->prev = current;
 }

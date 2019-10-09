@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 18:12:50 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/07 19:27:57 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/10/09 15:28:55 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	get_ants(t_lem_arifmetic *env_math)
 		if (line[0] == '#')
 			break ;
 	}
-	if (line = NULL)
+	if (line == NULL)
 		error();
 	if (validation_of_ants(line) == -1)
 		error();

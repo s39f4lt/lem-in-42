@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 15:06:43 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/09 16:23:16 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/10/09 21:05:06 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,19 @@ typedef struct			s_node
 	char				*name;
 	int					level;
 	int					count_connect;
+	int					iter;
+	int					id;
 	struct s_node		*next;
 	struct s_node		*previous;
 	struct s_node		**links;
 }						t_node;
 
-typedef struct      	s_links
+typedef struct			s_links
 {
-    char            	**link;
+	char				**link;
 	struct s_links		*next;
 	struct s_links		*prev;
-}                   	t_links;
+}						t_links;
 
 typedef struct			s_lem_arifmetic
 {
@@ -63,5 +65,10 @@ void					add_links(t_links **begin_list, char **links);
 void					free_links(t_links *links);
 void					lem_in(void);
 void					print_array(char **array);
+void					breadth_first_search(t_node *node);
+void					push_queque(t_queque *queque, t_node *node);
+t_queque				*init_queque(t_node *node);
+void					pop_queque(t_queque *queque);
+void					free_queque(t_queque *queque);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 15:56:58 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/09 15:29:31 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/10/09 21:00:49 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	print_array(char **array)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (array[i])
@@ -26,7 +26,7 @@ void	print_array(char **array)
 
 void	ft_free(char **elem)
 {
-	char **null_elem;
+	char	**null_elem;
 
 	null_elem = elem;
 	while (*elem)
@@ -56,7 +56,8 @@ void	init_connect(t_links **links, char **elem)
 	// ft_free(elem);
 }
 
-void	init_struct(t_lem_arifmetic *env_math, t_links **links, t_node **node)
+void	init_struct(t_lem_arifmetic *env_math, \
+t_links **links, t_node **node)
 {
 	while (get_next_line(0, &env_math->line) > 0)
 	{
@@ -83,6 +84,7 @@ void	print_list(t_links *links, t_node *node)
 	while (node)
 	{
 		printf("%s\n", node->name);
+		printf("%d\n", node->count_connect);
 		node = node->next;
 	}
 	printf("\nlink\n");
@@ -93,14 +95,95 @@ void	print_list(t_links *links, t_node *node)
 	}
 }
 
+void	count_connect(t_node *node, t_links *links)
+{
+	t_links	*first_elem_links;
+
+	first_elem_links = links;
+	while (node)
+	{
+		links = first_elem_links;
+		while (links)
+		{
+			if (!ft_strcmp(links->link[0], node->name))
+				node->count_connect++;
+			links = links->next;
+		}
+		links = first_elem_links;
+		while (links)
+		{
+			if (!ft_strcmp(links->link[1], node->name))
+				node->count_connect++;
+			links = links->next;
+		}
+		node = node->next;
+	}
+}
+
+t_node	*search_address(t_node *node, t_links *links, \
+t_node *current_elem)
+{
+	t_node	*first_elem;
+
+	first_elem = current_elem;
+	while (links)
+	{
+		if (!ft_strcmp(node->name, links->link[0]))
+		{
+			current_elem = first_elem;
+			while (current_elem)
+			{
+				if (!ft_strcmp(current_elem->name, links->link[1]))
+				{
+					node->links[node->iter++] = current_elem;
+					break ;
+				}
+				current_elem = current_elem->next;
+			}
+		}
+		links = links->next;
+	}
+	node->links[node->iter] = NULL;
+	return (NULL);
+}
+
+void	init_node_arr(t_node *node, t_links *links)
+{
+	t_node	*first_elem;
+
+	first_elem = node;
+	while (node)
+	{
+		node->iter = 0;
+		node->links = (t_node **)malloc(sizeof(t_node *) \
+		* (node->count_connect + 1));
+		search_address(node, links, first_elem);
+		// int i = 0;
+		// while (node->links[i])
+		// {
+		// 	printf("%s\n", node->name);
+		// 	printf("%s\n", node->links[i]->name);
+		// 	i++;
+		// }
+		node = node->next;
+	}
+}
+
+void	array_node(t_node *node, t_links *links)
+{
+	count_connect(node, links);
+	init_node_arr(node, links);
+}
+
 void	lem_in(void)
 {
-	t_lem_arifmetic env_math;
+	t_lem_arifmetic	env_math;
 	t_links 		*links;
 	t_node			*node;
 	
 	links = NULL;
 	node = NULL;
 	init_struct(&env_math, &links, &node);
-	print_list(links, node);
+	array_node(node, links);
+	// print_list(links, node);
 }

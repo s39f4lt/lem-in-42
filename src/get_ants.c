@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 18:12:50 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/09 20:58:42 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/10/10 18:28:16 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,10 @@ void	get_ants(t_lem_arifmetic *env_math)
 	if (line == NULL)
 		error();
 	if (validation_of_ants(line) == -1)
+	{
+		free(line);
 		error();
+	}
 	env_math->count_ants = ft_atoi(line);
 	free(line);
 	if (env_math->count_ants <= 0)

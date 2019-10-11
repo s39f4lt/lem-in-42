@@ -6,7 +6,7 @@
 /*   By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 20:24:38 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/08 16:44:03 by yperra-f         ###   ########.fr       */
+/*   Updated: 2019/10/11 12:06:37 by yperra-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,30 +35,26 @@ t_links	*init_links(char **links)
 	if (!(new_elem = (t_links *)malloc(sizeof(t_links))))
 		error();
 	new_elem->link = links;
-	// print_array(new_elem->link);
 	new_elem->next = NULL;
 	new_elem->prev = NULL;
 	return (new_elem);
 }
 
-void	add_links(t_links **begin_list, char **links)
+void	add_links(t_links *begin_list, char **links)
 {
 	t_links *new_elem;
-	t_links	*current;
 
-	current = *begin_list;
-	if (!*begin_list)
+	if (!begin_list)
 		error();
-	while (current->next)
-		current = current->next;
+	while (begin_list->next)
+		begin_list = begin_list->next;
 	if (!(new_elem = (t_links *)malloc(sizeof(t_links))))
 	{
-		free_links(*begin_list);
+		free_links(begin_list);
 		error();
 	}
 	new_elem->link = links;
-	// print_array(new_elem->link);
-	current->next = new_elem;
+	begin_list->next = new_elem;
 	new_elem->next = NULL;
-	new_elem->prev = current;
+	new_elem->prev = begin_list;
 }

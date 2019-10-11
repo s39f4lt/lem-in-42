@@ -6,7 +6,7 @@
 #    By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/08 14:50:16 by idunaver          #+#    #+#              #
-#    Updated: 2019/10/06 21:01:57 by idunaver         ###   ########.fr        #
+#    Updated: 2019/10/11 16:42:31 by idunaver         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,16 @@ FLAGS = -Wall -Wextra -Werror -g
 LEM-IN = lem-in
 SRC_LEM-IN_NAME = main.c \
 				  error.c \
-				  validation.c \
-				  get_data.c
+				  node.c \
+				  links.c \
+				  lem_in.c \
+				  id_node.c \
+				  get_ants.c \
+				  quick_sort.c \
+				  check_repeat.c \
+				  adj_matrix.c \
+				  breadth_first_search.c \
+				  queque.c
 
 OBJ_LEM-IN_NAME = $(SRC_LEM-IN_NAME:.c=.o);
 SRC_LEM-IN = $(addprefix $(OBJDIR)/, $(SRC_LEM-IN_NAME))

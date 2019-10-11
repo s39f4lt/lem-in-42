@@ -6,115 +6,70 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 21:48:35 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/09 17:32:40 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/10/11 17:45:22 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void			free_queque(t_queque *queque)
+static t_node	*end_node(t_node *node)
 {
-	t_queque	*tmp;
-
-	tmp = NULL;
-	while (queque)
-	{
-		if (queque->next)
-			tmp = queque->next;
-		free(queque);
-		queque = tmp;
-		tmp = NULL;
-	}
+	while (node->next)
+		node = node->next;
+	return (node);
 }
 
-void			pop_queque(t_queque *queque)
+static int		check_elem_queque(t_node *node)
 {
-	t_queque	*tmp;
-
-	tmp = NULL;
-	if (!queque)
-		return ;
-	if (queque->next)
-		tmp = queque->next;
-	queque->name = NULL;
-	free(queque);
-	queque = tmp;
-}
-
-t_queque		*init_queque(t_node *node)
-{
-	t_queque	*new;
-
-	if (!node)
-		return (NULL);
-	if (!(new = (t_queque *)malloc(sizeof(t_queque))))
-		error();
-	new->name = node;
-	new->next = NULL;
-}
-
-void			push_queque(t_queque *queque, t_node *node)
-{
-	t_queque	*tmp;
-	t_queque	*new;
-
-	tmp = NULL;
-	new = NULL;
-	if (!queque)
-		queque = init_queque(node);
+	if (node->accept == 0)
+		return (1);
 	else
-	{
-		if (!(new = (t_queque *)malloc(sizeof(queque))))
-		{
-			free_queque(queque);
-			error();
-		}
-		tmp = queque;
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = new;
-	}
+		return (-1);
 }
 
-int				search_in_adj_matrix();
-void			mark_in_adj_matrix();
-
-static	t_node	*end_node(t_node *node)
+void			fill_matrix(t_node *node, t_lem_arifmetic *env_math)
 {
 	t_node	*end;
 
-	end = node;
-	if (!node)
-		return (NULL);
-	while (ft_strcmp(end->name, "end") != 0)
-		end = end->next;
-	return (end);
+	end = NULL;
+	if (!node || !env_math)
+		return ;
+	end = end_node(node);
+	env_math->path++;
+	while (end->parent)
+	{
+		env_math->matrix[end->parent->id][end->id] = env_math->path;
+		end = end->parent;
+	}
 }
 
-void			breadth_first_search(t_node *node)
+void			breadth_first_search(t_node *node, t_lem_arifmetic *env_math)
 {
 	t_queque	*queque;
 	t_node		*end;
 
 	end = end_node(node);
 	queque = NULL;
-	if (!node->links)
+	if (!node || !node->links)
 		return ;
-	push_queque(queque, node);
-	search_in_adj_matrix();
-	while (queque->next)
+	push_queque(&queque, node);
+	while (queque)
 	{
-		if (search_in_adj_matrix() == 0)
+		node->iter = 0;
+		if (queque->name == end)
 		{
-			if (queque->name == end)
-				return ;
-			else
-			{
-				while (queque->name->links++)
-					push_queque(queque, queque->name->links);
-			}
+			free_queque(queque);
+			fill_matrix(node, env_math);
+			print_adj_matrix(env_math->matrix, env_math->count_rooms);
+			return ;
 		}
-		pop_queque(queque);
+		while (queque->name->links[node->iter])
+		{
+			if (check_elem_queque(queque->name->links[node->iter]) == 1)
+				push_queque(&queque, queque->name->links[node->iter]);
+			node->iter++;
+		}
+		pop_queque(&queque);
 	}
 	return ;
 }

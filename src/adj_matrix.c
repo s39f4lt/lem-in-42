@@ -6,11 +6,33 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 18:32:38 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/10 19:58:33 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/10/11 17:44:27 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+void	print_adj_matrix(int **matrix, int count_rooms)
+{
+	int	lines;
+	int links;
+
+	links = 0;
+	lines = 0;
+	while (lines <= count_rooms - 1)
+	{
+		printf("%d|", lines);
+		while (links <= count_rooms - 1)
+		{
+			printf("%d", matrix[lines][links]);
+			links++;
+		}
+		printf("\n");
+		links = 0;
+		lines++;
+	}
+	printf("\n");
+}
 
 void	clear_adj_matrix(int **matrix, int lines)
 {
@@ -23,7 +45,23 @@ void	clear_adj_matrix(int **matrix, int lines)
 	return ;
 }
 
-int		**init_adj_matrix(int count_rooms)
+void	add_links_at_adj_matrix(int **matrix, t_node *node)
+{
+	int		count_links;
+
+	count_links = 0;
+	if (!node)
+		return ;
+	while (node)
+	{
+		count_links = node->count_connect;
+		while (count_links--)
+			matrix[node->id][node->links[count_links]->id] = 1;
+		node = node->next;
+	}
+}
+
+int		**init_adj_matrix(int count_rooms, t_node *node)
 {
 	int	**matrix;
 	int	lines;
@@ -33,14 +71,14 @@ int		**init_adj_matrix(int count_rooms)
 	numbers = 0;
 	if (!(matrix = (int **)malloc(count_rooms * sizeof(int *))))
 		error();
-	while (lines != count_rooms)
+	while (lines < count_rooms)
 	{
 		if (!(matrix[lines] = (int *)malloc(count_rooms * sizeof(int))))
 		{
 			clear_adj_matrix(matrix, lines);
 			error();
 		}
-		while (numbers != count_rooms - 1)
+		while (numbers <= count_rooms - 1)
 		{
 			matrix[lines][numbers] = 0;
 			numbers++;
@@ -48,26 +86,8 @@ int		**init_adj_matrix(int count_rooms)
 		numbers = 0;
 		lines++;
 	}
+	// print_adj_matrix(matrix, count_rooms);
+	add_links_at_adj_matrix(matrix, node);
+	print_adj_matrix(matrix, count_rooms);
 	return (matrix);
-}
-
-void	add_links_at_adj_matrix(int **matrix, t_node *node)
-{
-	t_node	*tmp;
-	int		room;
-	int		count_links;
-	int		connect;
-
-	count_links = 0;
-	room = 0;
-	tmp = node;
-	if (!tmp)
-		return ;
-	while (tmp->next)
-	{
-		count_links = tmp->count_connect;
-		while (count_links--)
-			matrix[room][tmp->links[count_links - 1]->id] = 1;
-		tmp = tmp->next;
-	}
 }

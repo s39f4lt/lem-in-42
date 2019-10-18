@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 18:12:50 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/11 17:03:53 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/10/18 19:57:43 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int		validation_of_ants(char *line)
 			return (-1);
 		else
 			first_number = 1;
-		if (*line >= 48 && *line <=57)
+		if (*line >= 48 && *line <= 57)
 			line++;
 		else
 			return (-1);

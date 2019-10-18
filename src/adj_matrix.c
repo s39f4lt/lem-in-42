@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 18:32:38 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/11 17:44:27 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/10/18 19:29:04 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,6 @@ int		**init_adj_matrix(int count_rooms, t_node *node)
 		numbers = 0;
 		lines++;
 	}
-	// print_adj_matrix(matrix, count_rooms);
 	add_links_at_adj_matrix(matrix, node);
-	print_adj_matrix(matrix, count_rooms);
 	return (matrix);
 }

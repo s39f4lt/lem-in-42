@@ -6,26 +6,11 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 16:37:49 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/11 16:39:35 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/10/18 19:48:48 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-void			free_queque(t_queque *queque)
-{
-	t_queque	*tmp;
-
-	tmp = NULL;
-	while (queque)
-	{
-		if (queque->next)
-			tmp = queque->next;
-		free(queque);
-		queque = tmp;
-		tmp = NULL;
-	}
-}
 
 void			pop_queque(t_queque **queque)
 {
@@ -50,6 +35,7 @@ t_queque		*init_queque(t_node *node)
 	if (!(new = (t_queque *)malloc(sizeof(t_queque))))
 		error();
 	new->name = node;
+	new->name->parent = NULL;
 	new->next = NULL;
 	return (new);
 }
@@ -61,6 +47,8 @@ void			push_queque(t_queque **queque, t_node *node)
 
 	new = NULL;
 	head = *queque;
+	if (node == NULL)
+		return ;
 	if (!*queque)
 		*queque = init_queque(node);
 	else

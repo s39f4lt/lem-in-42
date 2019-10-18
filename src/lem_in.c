@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 15:56:58 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/11 17:41:35 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/10/18 20:32:11 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,6 @@ void	print_array(char **array)
 		printf("array[%d] - %s\n", i,  array[i]);
 		i++;
 	}
-}
-
-void	ft_free(char **elem)
-{
-	char **null_elem;
-
-	null_elem = elem;
-	while (*elem)
-	{
-		free(*elem);
-		elem++;
-	}
-	null_elem = NULL;
 }
 
 void	ft_node(t_node **node, char **elem, int flag)
@@ -101,18 +88,12 @@ void	rebuild_struct(t_node **node)
 
 	flag = 0;
 	current_elem = *node;
-	// write(1, "hello", 5);
 	while (current_elem)
 	{
-		// printf("%d\n", current_elem->start_or_end);
-		// write(1, "hello", 5);
 		if (current_elem->start_or_end == 1 && current_elem->previous != NULL)
 		{
 			if (!(first_or_last_elem = eject_elem(node, 1)))
 				break ;
-			// printf("start_name - %s\n", first_or_last_elem->name);
-			// printf("node->name - %s\n", (*node)->name);
-			// write(1, "hello", 5);
 			add_node_elem(node, first_or_last_elem, 1);
 			flag++;
 			current_elem = *node;
@@ -134,36 +115,7 @@ void	rebuild_struct(t_node **node)
 	}
 }
 
-int		init_struct(t_lem_arifmetic *env_math, t_links **links, t_node **node)
-{
-	// if ((env_math->count_ants = get_ants(env_math)) <= 0)
-	// 	return (0);
-	get_ants(env_math);
-	printf("ants: %d\n", env_math->count_ants);
-	while (get_next_line(0, &env_math->line) > 0)
-	{
-		if (!ft_strcmp(env_math->line, "##start"))
-			first_elem_node(node);
-		else if (!ft_strcmp(env_math->line, "##end"))
-			last_elem_node(node);
-		else if (ft_strchr(env_math->line, ' '))
-			ft_node(node, ft_strsplit(env_math->line, ' '), 0);
-		else if (ft_strchr(env_math->line, '-'))
-			ft_connect(links, ft_strsplit(env_math->line, '-'));
-		else if (env_math->line[0] == '#')
-			continue ;
-		else
-		{
-			free(env_math->line);
-			error();
-		}
-		free(env_math->line);
-	}
-	rebuild_struct(node);
-	add_id_in_nodes(*node, env_math);
-	// print_adj_matrix(env_math->matrix, env_math->count_rooms);
-	return (1);
-}
+
 
 void	print_list(t_links *links, t_node *node)
 {
@@ -171,21 +123,20 @@ void	print_list(t_links *links, t_node *node)
 	while (node)
 	{
 		printf("name - %s\n", node->name);
-		printf("%d\n", node->accept);
-		node->parent ? printf("%s\n", node->parent->name) : printf("NULL\n");
+		printf("accept - %d\n", node->accept);
+		node->parent ? printf("parent: %s\n", node->parent->name) : printf("NULL\n");
 		// printf("%d\n", node->start_or_end);
 		// printf("count_connect - %d\n", node->count_connect);
-		// printf("%s\n", node->links[0]->name);
+		// int i = 0;
+		// while (node->links[i])
+		// {
+		// 	printf("links[0] - %s\n", node->links[i]->name);
+		// 	i++;
+		// }
 		// printf("id - %d\n", node->id);
 		node = node->next;
 	}
 	links = NULL;
-	// printf("\nlink\n");
-	// while (links)
-	// {
-	// 	print_array(links->link);
-	// 	links = links->next;
-	// }
 }
 
 void	count_connect(t_node *node, t_links *links)
@@ -233,6 +184,19 @@ t_node	*search_address(t_node *node, t_links *links, t_node *current_elem)
 				current_elem = current_elem->next;
 			}
 		}
+		// if (!ft_strcmp(node->name, links->link[1]))
+		// {
+		// 	current_elem = first_elem;
+		// 	while (current_elem)
+		// 	{
+		// 		if (!ft_strcmp(current_elem->name, links->link[0]))
+		// 		{
+		// 			node->links[node->iter++] = current_elem;
+		// 			break ;
+		// 		}
+		// 		current_elem = current_elem->next;
+		// 	}
+		// }
 		links = links->next;
 	}
 	node->links[node->iter] = NULL;
@@ -253,25 +217,62 @@ void	init_node_arr(t_node *node, t_links *links)
 	}
 }
 
-int		array_node(t_node *node, t_links *links)
+int			array_node(t_node *node, t_links *links)
 {
 	count_connect(node, links);
 	init_node_arr(node, links);
 	return (1);
 }
 
-void	lem_in(void)
+void		check_cross_line(t_lem_arifmetic *env_math)
+{
+	int x;
+	int y;
+
+	x = 0;
+	y = 0;
+	while (x != env_math->count_rooms - 1)
+	{
+		while (y != env_math->count_rooms - 1)
+		{
+			if (env_math->matrix[x][y] > 1 && env_math->matrix[y][x] > 1 && env_math->matrix[x][y] == env_math->matrix[y][x])
+			{
+				env_math->matrix[x][y] = 0;
+				env_math->matrix[y][x] = 0;
+			}
+			y++;
+		}
+		x++;
+		y = 0;
+	}
+}
+
+void		lem_in(void)
 {
 	t_lem_arifmetic env_math;
 	t_links 		*links;
 	t_node			*node;
+	t_node			*end;
+	t_struct		*path;
 	
 	links = NULL;
 	node = NULL;
-	if (!init_struct(&env_math, &links, &node) || !array_node(node, links) || \
-	!(env_math.matrix = init_adj_matrix(env_math.count_rooms, node)))
+	path = NULL;
+	if (!init_struct(&env_math, &links, &node) || !array_node(node, links) || !(env_math.matrix = init_adj_matrix(env_math.count_rooms, node)))
 		return ;
 	env_math.path = 1;
-	breadth_first_search(node, &env_math);
-	print_list(links, node);
+	env_math.count_path = 0;
+	while (1)
+	{
+		puts("Hello, moto");
+		if (!(end = breadth_first_search(node, &env_math)) || !(path = init_list_for_path(end, path)))
+			break ;
+		puts("Hello");
+		if (env_math.count_path < calc_path_for_ants(path, &env_math))
+			env_math.count_path++;
+		else
+			break ;
+	}
+	printf("count_path: %d\n", env_math.count_path);
+	// print_list(links, node);
 }

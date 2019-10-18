@@ -6,7 +6,7 @@
 #    By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/08 14:50:16 by idunaver          #+#    #+#              #
-#    Updated: 2019/10/11 16:42:31 by idunaver         ###   ########.fr        #
+#    Updated: 2019/10/18 20:33:50 by idunaver         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,13 @@ SRC_LEM-IN_NAME = main.c \
 				  check_repeat.c \
 				  adj_matrix.c \
 				  breadth_first_search.c \
-				  queque.c
+				  queque.c \
+				  path_for_ants.c \
+				  create_path.c \
+				  nuller.c \
+				  all_free_1.c \
+				  all_free_2.c \
+				  valid.c
 
 OBJ_LEM-IN_NAME = $(SRC_LEM-IN_NAME:.c=.o);
 SRC_LEM-IN = $(addprefix $(OBJDIR)/, $(SRC_LEM-IN_NAME))
@@ -55,7 +61,7 @@ clean:
 
 fclean: clean
 	@make fclean -C $(LIBDIR)
-	@rm -Rf $(LEM_IN)
+	@rm -Rf $(LEM-IN)
 
 re: fclean all
 

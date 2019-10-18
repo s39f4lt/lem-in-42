@@ -3,30 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   links.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 20:24:38 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/11 12:06:37 by yperra-f         ###   ########.fr       */
+/*   Updated: 2019/10/18 19:54:56 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-void	free_links(t_links *links)
-{
-	t_links	*tmp;
-
-	tmp = NULL;
-	while (links)
-	{
-		if (links->next)
-			tmp = links->next;
-		free(links);
-		links = NULL;
-		links = tmp;
-		tmp = NULL;
-	}
-}
 
 t_links	*init_links(char **links)
 {

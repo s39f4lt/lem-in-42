@@ -6,27 +6,11 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 17:21:05 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/11 16:51:19 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/10/18 19:49:23 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-void	free_nodes(t_node *nodes)
-{
-	t_node	*tmp;
-
-	tmp = NULL;
-	while (nodes)
-	{
-		if (nodes->next)
-			tmp = nodes->next;
-		free(nodes);
-		nodes = NULL;
-		nodes = tmp;
-		tmp = NULL;
-	}
-}
 
 void	start_mid_end_elem(t_node *new_elem, int flag)
 {
@@ -45,7 +29,7 @@ t_node	*init_node(char *name, int count_connect, int flag)
 	if (!(new_elem = (t_node *)malloc(sizeof(t_node))))
 		error();
 	start_mid_end_elem(new_elem, flag);
-	new_elem->name = ft_strdup(name);
+	name ? (new_elem->name = ft_strdup(name)) : (new_elem->name = NULL);
 	new_elem->level = 0;
 	new_elem->accept = 0;
 	new_elem->count_connect = count_connect;

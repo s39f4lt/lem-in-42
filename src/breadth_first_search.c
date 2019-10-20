@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 21:48:35 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/18 19:33:52 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/10/20 21:04:38 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ t_node			*breadth_first_search(t_node *node, t_lem_arifmetic *env_math)
 		node->iter = 0;
 		if (queque->name == end)
 		{
-			free_queque(queque);
+			free_queque(&queque);
 			fill_matrix(node, env_math);
 			null_accept_and_matrix(node, env_math);
 			null_parent(node, env_math);

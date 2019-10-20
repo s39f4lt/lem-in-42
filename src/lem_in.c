@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 15:56:58 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/20 19:35:16 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/10/20 21:24:54 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,46 +38,6 @@ void	ft_connect(t_links **links, char **elem)
 		*links = init_links(elem);
 	else
 		add_links(*links, elem);
-}
-
-void	first_elem_node(t_node **node)
-{
-	char *line;
-
-	while (get_next_line(0, &line) > 0)
-	{
-		if (line[0] == '#' && ft_strcmp(line, "##end"))
-			continue ;
-		else if (ft_strchr(line, ' '))
-		{
-			ft_node(node, ft_strsplit(line, ' '), 1);
-			free(line);
-			break ;
-		}
-		else
-			error();
-		free(line);
-	}
-}
-
-void	last_elem_node(t_node **node)
-{
-	char *line;
-
-	while (get_next_line(0, &line) > 0)
-	{
-		if (line[0] == '#' && ft_strcmp(line, "##start"))
-			continue ;
-		else if (ft_strchr(line, ' '))
-		{
-			ft_node(node, ft_strsplit(line, ' '), 2);
-			free(line);
-			break ;
-		}
-		else
-			error();
-		free(line);
-	}
 }
 
 void	rebuild_struct(t_node **node)

@@ -6,23 +6,23 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 19:47:50 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/18 20:09:23 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/10/20 21:23:59 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	free_queque(t_queque *queque)
+void	free_queque(t_queque **queque)
 {
 	t_queque	*tmp;
 
 	tmp = NULL;
-	while (queque)
+	while (*queque)
 	{
-		if (queque->next)
-			tmp = queque->next;
-		free(queque);
-		queque = tmp;
+		if ((*queque)->next)
+			tmp = (*queque)->next;
+		free(*queque);
+		*queque = tmp;
 		tmp = NULL;
 	}
 }

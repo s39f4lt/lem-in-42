@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 15:06:43 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/20 19:43:24 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/10/20 21:24:11 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,9 @@ typedef struct			s_lem_arifmetic
 	int					count_rooms;
 	int					path;
 	int					count_path;
+	char				*ants;
 	char				*book;
+	char				*tmp;
 }						t_lem_arifmetic;
 
 typedef struct			s_queque
@@ -80,7 +82,7 @@ t_struct				*init_list_for_path(t_node *end, t_struct *path);
 /* error - NORM - 1 */
 void					error(void);
 /* get_ants - NORM - 2 */
-void					get_ants(t_lem_arifmetic *env_math);
+void					get_ants(t_lem_arifmetic **env_math);
 /* id_node - NORM - 1 */
 void					add_id_in_nodes(t_node *node, t_lem_arifmetic *env_math);
 /* lem_in */
@@ -92,8 +94,6 @@ t_node					*search_address(t_node *node, t_links *links, t_node *current_elem);
 void					count_connect(t_node *node, t_links *links);
 void					print_list(t_links *links, t_node *node);
 void					rebuild_struct(t_node **node);
-void					last_elem_node(t_node **node);
-void					first_elem_node(t_node **node);
 void					ft_connect(t_links **links, char **elem);
 void					ft_node(t_node **node, char **elem, int flag);
 void					print_array(char **array);
@@ -135,7 +135,7 @@ void					null_accept_and_matrix(t_node *node, t_lem_arifmetic *env_math);
 void					null_parent(t_node *node, t_lem_arifmetic *env_math);
 void					null_links(t_node *node, t_lem_arifmetic *env_math);
 /* all_free_1 - NORM - 4 */
-void					free_queque(t_queque *queque);
+void					free_queque(t_queque **queque);
 void					free_nodes(t_node *nodes);
 void					free_links(t_links *links);
 void					ft_free(char **elem);
@@ -143,6 +143,8 @@ void					ft_free(char **elem);
 t_struct				*free_struct(t_struct *path);
 void					free_path(t_path *path);
 /* valid */
+void					first_elem_node(t_lem_arifmetic **env_math, t_node **node);
 int						init_struct(t_lem_arifmetic *env_math, t_links **links, t_node **node);
+void					last_elem_node(t_lem_arifmetic **env_math, t_node **node);
 
 #endif

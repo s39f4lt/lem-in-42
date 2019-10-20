@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 16:37:49 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/18 19:48:48 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/10/20 21:04:59 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void			push_queque(t_queque **queque, t_node *node)
 	{
 		if (!(new = (t_queque *)malloc(sizeof(queque))))
 		{
-			free_queque(*queque);
+			free_queque(queque);
 			error();
 		}
 		while ((*queque)->next)

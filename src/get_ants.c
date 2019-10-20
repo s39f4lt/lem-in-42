@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 18:12:50 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/20 19:45:35 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/10/20 20:21:36 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,23 +33,25 @@ static int		validation_of_ants(char *line)
 	return (1);
 }
 
-void			get_ants(t_lem_arifmetic *env_math)
+void			get_ants(t_lem_arifmetic **env_math)
 {
-	char	*line;
+	// char	*line;
 
-	line = NULL;
-	while (get_next_line(0, &line) > 0)
+	// line = NULL;
+	while (get_next_line(0, &(*env_math)->line) > 0)
 	{
-		if (line[0] != '#')
+		if ((*env_math)->line[0] != '#')
 			break ;
 	}
-	if (line == NULL)
+	if ((*env_math)->line == NULL)
 		error();
-	if (validation_of_ants(line) == -1)
+	if (validation_of_ants((*env_math)->line) == -1)
 		error();
-	env_math->count_ants = ft_atoi(line);
-	env_math->book = ft_strdup(env_math->count_ants);
-	free(line);
-	if (env_math->count_ants <= 0)
+	(*env_math)->count_ants = ft_atoi((*env_math)->line);
+	free((*env_math)->line);
+	if ((*env_math)->count_ants <= 0)
 		error();
+	(*env_math)->ants = ft_itoa((*env_math)->count_ants);
+	(*env_math)->book = ft_strjoin((*env_math)->ants, "\n");
+	free((*env_math)->ants);
 }

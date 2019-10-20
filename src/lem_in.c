@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 15:56:58 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/18 20:32:11 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/10/20 17:50:51 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -247,32 +247,46 @@ void		check_cross_line(t_lem_arifmetic *env_math)
 	}
 }
 
+void		print_path(t_struct *struct_pointer)
+{
+	while (struct_pointer)
+	{
+		printf("\nlength - %d", struct_pointer->length);
+		printf("\n");
+		while (struct_pointer->path)
+		{
+			printf("%s\n", struct_pointer->path->name);
+			struct_pointer->path = struct_pointer->path->next;
+		}
+		struct_pointer = struct_pointer->next;
+	}
+}
+
 void		lem_in(void)
 {
 	t_lem_arifmetic env_math;
 	t_links 		*links;
 	t_node			*node;
 	t_node			*end;
-	t_struct		*path;
+	t_struct		*struct_pointer;
 	
 	links = NULL;
 	node = NULL;
-	path = NULL;
+	struct_pointer = NULL;
 	if (!init_struct(&env_math, &links, &node) || !array_node(node, links) || !(env_math.matrix = init_adj_matrix(env_math.count_rooms, node)))
 		return ;
 	env_math.path = 1;
 	env_math.count_path = 0;
 	while (1)
 	{
-		puts("Hello, moto");
-		if (!(end = breadth_first_search(node, &env_math)) || !(path = init_list_for_path(end, path)))
+		if (!(end = breadth_first_search(node, &env_math)) || !(struct_pointer = init_list_for_path(end, struct_pointer)))
 			break ;
-		puts("Hello");
-		if (env_math.count_path < calc_path_for_ants(path, &env_math))
+		if (env_math.count_path < calc_path_for_ants(struct_pointer, &env_math))
 			env_math.count_path++;
 		else
 			break ;
 	}
-	printf("count_path: %d\n", env_math.count_path);
+	print_path(struct_pointer);
+	printf("\ncount-path: %d\n", env_math.count_path);
 	// print_list(links, node);
 }

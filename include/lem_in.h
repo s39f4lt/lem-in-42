@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 15:06:43 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/18 20:33:13 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/10/20 15:57:37 by yperra-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ void					free_nodes(t_node *nodes);
 void					free_links(t_links *links);
 void					ft_free(char **elem);
 /* all_free_2 - NORM - 2 */
-void					free_struct(t_struct *path);
+t_struct				*free_struct(t_struct *path);
 void					free_path(t_path *path);
 /* valid */
 int						init_struct(t_lem_arifmetic *env_math, t_links **links, t_node **node);

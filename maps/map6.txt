@@ -3,7 +3,6 @@
 start 0 1
 ##end
 end 1 0
-#comment
 1 1 1
 2 2 2
 3 3 3
@@ -19,11 +18,9 @@ end 1 0
 13 13 13
 14 14 14
 15 15 15
-16 16 16
-#another comment
 1-4
 2-5
-3-6
+3-10
 3-7
 4-8
 5-6
@@ -38,8 +35,7 @@ end 1 0
 start-1
 start-2
 start-3
-end-9
-end-10
-end-13
-end-15
-start-16
+9-end
+10-end
+13-end
+15-end

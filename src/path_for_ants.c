@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 12:31:13 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/18 18:01:38 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/10/20 17:42:53 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,28 +69,34 @@ void		sort_path(t_struct **path)
 	}
 }
 
-int			calc_path_for_ants(t_struct *path, t_lem_arifmetic *env_math)
+int			calc_path_for_ants(t_struct *struct_pointer, t_lem_arifmetic *env_math)
 {
 	int			ants;
 	int			diff_path;
 	int			count_path;
-	t_struct	*next_path;
 
-	next_path = NULL;
 	diff_path = 0;
-	if (!path || !env_math)
-		return (-1);
-	count_path = 1;
+	count_path = 0;
 	ants = env_math->count_ants;
-	if (path->next)
-		next_path = path->next;
-	while (ants && path && next_path)
+	if (!struct_pointer->next)
+		return (1);	
+	while (ants && struct_pointer && struct_pointer->next)
 	{
 		count_path++;
-		diff_path = (next_path->length - path->length) * count_path;
+		if (!(diff_path = (struct_pointer->next->length - struct_pointer->length) * count_path))
+		{
+			while (struct_pointer->next && struct_pointer->length == struct_pointer->next->length)
+			{
+				struct_pointer = struct_pointer->next;
+				count_path++;
+				if (ants - count_path == 0)
+					return (count_path);
+			}
+		}
 		ants = ants - diff_path;
-		path = path->next;
-		next_path = path->next;
+		struct_pointer = struct_pointer->next;
 	}
+	if (ants > 0)
+		count_path++;
 	return (count_path);
 }

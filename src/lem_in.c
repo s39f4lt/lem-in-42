@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 15:56:58 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/20 17:50:51 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/10/20 19:35:16 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,13 +153,13 @@ void	count_connect(t_node *node, t_links *links)
 				node->count_connect++;
 			links = links->next;
 		}
-		// links = first_elem_links;
-		// while (links)
-		// {
-		// 	if (!ft_strcmp(links->link[1], node->name))
-		// 		node->count_connect++;
-		// 	links = links->next;
-		// }
+		links = first_elem_links;
+		while (links)
+		{
+			if (!ft_strcmp(links->link[1], node->name))
+				node->count_connect++;
+			links = links->next;
+		}
 		node = node->next;
 	}
 }
@@ -184,19 +184,19 @@ t_node	*search_address(t_node *node, t_links *links, t_node *current_elem)
 				current_elem = current_elem->next;
 			}
 		}
-		// if (!ft_strcmp(node->name, links->link[1]))
-		// {
-		// 	current_elem = first_elem;
-		// 	while (current_elem)
-		// 	{
-		// 		if (!ft_strcmp(current_elem->name, links->link[0]))
-		// 		{
-		// 			node->links[node->iter++] = current_elem;
-		// 			break ;
-		// 		}
-		// 		current_elem = current_elem->next;
-		// 	}
-		// }
+		if (!ft_strcmp(node->name, links->link[1]))
+		{
+			current_elem = first_elem;
+			while (current_elem)
+			{
+				if (!ft_strcmp(current_elem->name, links->link[0]))
+				{
+					node->links[node->iter++] = current_elem;
+					break ;
+				}
+				current_elem = current_elem->next;
+			}
+		}
 		links = links->next;
 	}
 	node->links[node->iter] = NULL;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 15:06:43 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/20 15:57:37 by yperra-f         ###   ########.fr       */
+/*   Updated: 2019/10/20 19:43:24 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct			s_lem_arifmetic
 	int					count_rooms;
 	int					path;
 	int					count_path;
+	char				*book;
 }						t_lem_arifmetic;
 
 typedef struct			s_queque

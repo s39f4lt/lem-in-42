@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 12:31:13 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/20 17:42:53 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/10/20 19:29:27 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,17 +80,17 @@ int			calc_path_for_ants(t_struct *struct_pointer, t_lem_arifmetic *env_math)
 	ants = env_math->count_ants;
 	if (!struct_pointer->next)
 		return (1);	
-	while (ants && struct_pointer && struct_pointer->next)
+	while (ants > 0 && struct_pointer && struct_pointer->next)
 	{
 		count_path++;
 		if (!(diff_path = (struct_pointer->next->length - struct_pointer->length) * count_path))
 		{
-			while (struct_pointer->next && struct_pointer->length == struct_pointer->next->length)
+			if (struct_pointer->next && struct_pointer->length == struct_pointer->next->length)
 			{
 				struct_pointer = struct_pointer->next;
-				count_path++;
-				if (ants - count_path == 0)
+				if (ants - count_path <= 0)
 					return (count_path);
+				continue ;
 			}
 		}
 		ants = ants - diff_path;

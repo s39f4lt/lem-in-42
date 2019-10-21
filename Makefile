@@ -6,7 +6,7 @@
 #    By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/08 14:50:16 by idunaver          #+#    #+#              #
-#    Updated: 2019/10/18 20:33:50 by idunaver         ###   ########.fr        #
+#    Updated: 2019/10/21 17:25:14 by idunaver         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRCDIR = src
 LIBDIR = libft
 HEADER = -I ./include
 HEADER_LIBFT = -I ./libft/include -I ./libft/src/ft_printf/include
-FLAGS = -Wall -Wextra -Werror -g
+FLAGS = -Wall -Wextra -Werror -g -O0
 
 LEM-IN = lem-in
 SRC_LEM-IN_NAME = main.c \
@@ -37,7 +37,11 @@ SRC_LEM-IN_NAME = main.c \
 				  nuller.c \
 				  all_free_1.c \
 				  all_free_2.c \
-				  valid.c
+				  valid.c \
+				  output_book.c \
+				  prints.c \
+				  init_struct.c \
+				  array_node.c
 
 OBJ_LEM-IN_NAME = $(SRC_LEM-IN_NAME:.c=.o);
 SRC_LEM-IN = $(addprefix $(OBJDIR)/, $(SRC_LEM-IN_NAME))

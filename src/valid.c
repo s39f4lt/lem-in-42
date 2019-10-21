@@ -6,22 +6,27 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 20:31:32 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/20 21:13:45 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/10/21 18:19:36 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	cat_in_book(t_lem_arifmetic **env_math)
+void	ft_connect(t_links **links, char **elem)
 {
-	(*env_math)->tmp = ft_strjoin((*env_math)->book, ft_strcat((*env_math)->line, "\n"));
-	free((*env_math)->book);
-	free((*env_math)->line);
-	(*env_math)->line = NULL;
-	(*env_math)->book = ft_strdup((*env_math)->tmp);
-	free((*env_math)->tmp);
-	(*env_math)->tmp = NULL;
+	if (!*links)
+		*links = init_links(elem);
+	else
+		add_links(*links, elem);
+}
 
+void	ft_node(t_node **node, char **elem, int flag)
+{
+	if (!*node)
+		*node = init_node(elem[0], 0, flag);
+	else
+		add_node(node, elem[0], 0, flag);
+	ft_free(elem);
 }
 
 void	last_elem_node(t_lem_arifmetic **env_math, t_node **node)
@@ -66,12 +71,10 @@ void	first_elem_node(t_lem_arifmetic **env_math, t_node **node)
 	}
 }
 
-int		init_struct(t_lem_arifmetic *env_math, t_links **links, t_node **node)
+void	parse_map(t_lem_arifmetic *env_math, t_links **links, t_node **node)
 {
-	get_ants(&env_math);
 	while (get_next_line(0, &env_math->line) > 0)
 	{
-		// cat_in_book(&env_math);
 		if (!ft_strcmp(env_math->line, "##start"))
 			first_elem_node(&env_math, node);
 		else if (!ft_strcmp(env_math->line, "##end"))
@@ -90,12 +93,9 @@ int		init_struct(t_lem_arifmetic *env_math, t_links **links, t_node **node)
 			continue ;
 		else
 		{
-			free(env_math->line);
+			ft_strdel(&env_math->line);
 			error();
 		}
+		ft_strdel(&env_math->line);
 	}
-	printf("%s\n", env_math->book);
-	rebuild_struct(node);
-	add_id_in_nodes(*node, env_math);
-	return (1);
 }

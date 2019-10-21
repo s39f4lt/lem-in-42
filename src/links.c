@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 20:24:38 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/18 19:54:56 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/10/21 17:18:16 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	add_links(t_links *begin_list, char **links)
 		begin_list = begin_list->next;
 	if (!(new_elem = (t_links *)malloc(sizeof(t_links))))
 	{
-		free_links(begin_list);
+		free_links(&begin_list);
 		error();
 	}
 	new_elem->link = links;

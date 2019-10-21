@@ -6,11 +6,26 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 18:32:38 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/18 19:29:04 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/10/21 18:07:00 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+void	fill_matrix(t_node *node, t_lem_arifmetic *env_math)
+{
+	t_node	*end;
+
+	if (!node || !env_math)
+		return ;
+	end = end_node(node);
+	env_math->path++;
+	while (end->parent)
+	{
+		env_math->matrix[end->parent->id][end->id] = env_math->path;
+		end = end->parent;
+	}
+}
 
 void	print_adj_matrix(int **matrix, int count_rooms)
 {
@@ -36,10 +51,9 @@ void	print_adj_matrix(int **matrix, int count_rooms)
 
 void	clear_adj_matrix(int **matrix, int lines)
 {
-	while (lines >= 0)
+	while (--lines >= 0)
 	{
 		free(matrix[lines]);
-		lines--;
 	}
 	free(matrix);
 	return ;

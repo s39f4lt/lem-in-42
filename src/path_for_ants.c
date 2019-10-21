@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 12:31:13 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/20 19:29:27 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/10/21 21:07:46 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,13 @@ t_struct	*swap_elems(t_struct **current, t_struct **next, t_struct **prev)
 	tmp = NULL;
 	if (!*current || !*next)
 		return (NULL);
+	printf("current: %d\n", (*current)->length);
+	printf("next: %d\n", (*next)->length);
 	tmp = (*next)->next;
 	(*next)->next = *current;
 	(*current)->next = tmp;
+	printf("current: %d\n", (*current)->length);
+	printf("next->next: %d\n", (*next)->next->length);
 	if (*prev)
 		(*prev)->next = *next;
 	return (*current);
@@ -56,9 +60,16 @@ void		sort_path(t_struct **path)
 		next = current->next;
 	while (current && next)
 	{
+		// puts("bug");
 		if (current->length > next->length)
 		{
+			// puts("bug1");
+			// printf("current %d\n", current->length);
+			// printf("next %d\n", next->length);
 			current = swap_elems(&current, &next, &prev);
+			// puts("bug2");
+			// printf("current %d\n", current->length);
+			// printf("next %d\n", next->length);
 			if (prev)
 				current = prev;
 			continue ;
@@ -69,23 +80,19 @@ void		sort_path(t_struct **path)
 	}
 }
 
-int			calc_path_for_ants(t_struct *struct_pointer, t_lem_arifmetic *env_math)
+int			calc_count_path(t_struct *struct_pointer, int ants, int count_path)
 {
-	int			ants;
 	int			diff_path;
-	int			count_path;
 
 	diff_path = 0;
-	count_path = 0;
-	ants = env_math->count_ants;
-	if (!struct_pointer->next)
-		return (1);	
 	while (ants > 0 && struct_pointer && struct_pointer->next)
 	{
 		count_path++;
-		if (!(diff_path = (struct_pointer->next->length - struct_pointer->length) * count_path))
+		if (!(diff_path = (struct_pointer->next->length - \
+		struct_pointer->length) * count_path))
 		{
-			if (struct_pointer->next && struct_pointer->length == struct_pointer->next->length)
+			if (struct_pointer->next && struct_pointer->length \
+			== struct_pointer->next->length)
 			{
 				struct_pointer = struct_pointer->next;
 				if (ants - count_path <= 0)
@@ -99,4 +106,17 @@ int			calc_path_for_ants(t_struct *struct_pointer, t_lem_arifmetic *env_math)
 	if (ants > 0)
 		count_path++;
 	return (count_path);
+}
+
+int			calc_path_for_ants(t_struct *struct_pointer, \
+t_lem_arifmetic *env_math)
+{
+	int			ants;
+	int			count_path;
+
+	count_path = 0;
+	ants = env_math->count_ants;
+	if (!struct_pointer->next)
+		return (1);
+	return (calc_count_path(struct_pointer, ants, count_path));
 }

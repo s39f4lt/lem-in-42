@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 18:12:50 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/20 20:21:36 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/10/21 15:47:46 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,6 @@ static int		validation_of_ants(char *line)
 
 void			get_ants(t_lem_arifmetic **env_math)
 {
-	// char	*line;
-
-	// line = NULL;
 	while (get_next_line(0, &(*env_math)->line) > 0)
 	{
 		if ((*env_math)->line[0] != '#')

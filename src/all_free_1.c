@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 19:47:50 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/20 21:23:59 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/10/21 18:00:27 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,59 +15,73 @@
 void	free_queque(t_queque **queque)
 {
 	t_queque	*tmp;
+	t_queque	*copy;
 
+	if (!queque || !(*queque))
+		return ;
 	tmp = NULL;
-	while (*queque)
+	copy = *queque;
+	while (copy)
 	{
-		if ((*queque)->next)
-			tmp = (*queque)->next;
-		free(*queque);
-		*queque = tmp;
+		if (copy->next)
+			tmp = copy->next;
+		ft_memdel((void**)&copy);
+		copy = tmp;
 		tmp = NULL;
 	}
+	*queque = NULL;
 }
 
-void	free_nodes(t_node *nodes)
+void	free_nodes(t_node **nodes)
 {
-	t_node	*tmp;
+	t_node		*tmp;
+	t_node	*copy;
 
+	if (!nodes || !(*nodes))
+		return ;
 	tmp = NULL;
-	while (nodes)
+	copy = *nodes;
+	while (copy)
 	{
-		if (nodes->next)
-			tmp = nodes->next;
-		free(nodes);
-		nodes = NULL;
-		nodes = tmp;
+		if (copy->next)
+			tmp = copy->next;
+		ft_strdel(&copy->name);
+		ft_memdel((void**)&copy->links);		
+		ft_memdel((void**)&copy);
+		copy = tmp;
 		tmp = NULL;
 	}
+	*nodes = NULL;
 }
 
-void	free_links(t_links *links)
+void	free_links(t_links **links)
 {
 	t_links	*tmp;
+	t_links	*copy;
 
 	tmp = NULL;
-	while (links)
+	copy = *links;
+	while (copy)
 	{
-		if (links->next)
-			tmp = links->next;
-		free(links);
-		links = NULL;
-		links = tmp;
+		if (copy->next)
+			tmp = copy->next;
+		ft_free(copy->link);
+		ft_memdel((void**)&copy);
+		copy = tmp;
 		tmp = NULL;
 	}
+	*links = NULL;
 }
 
 void	ft_free(char **elem)
 {
-	char **null_elem;
+	int	i;
 
-	null_elem = elem;
-	while (*elem)
-	{
-		free(*elem);
-		elem++;
-	}
-	null_elem = NULL;
+	if (!elem)
+		return ;
+	i = -1;
+	while (elem[++i])
+		ft_strdel(&elem[i]);
+	free(elem);
+	elem = NULL;
 }

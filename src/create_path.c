@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 17:26:13 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/20 17:12:27 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/10/21 21:20:26 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_path		*init_struct_path(t_struct *struct_pointer, t_node *end)
 			|| !(struct_pointer->path->name = end->name))
 				return (NULL);
 			struct_pointer->path->next = NULL;
+			new = struct_pointer->path;
 		}
 		else
 		{
@@ -59,9 +60,8 @@ t_struct	*init_list_for_path(t_node *end, t_struct *struct_pointer)
 	if (!struct_pointer)
 	{
 		if (!(struct_pointer = init_struct_res(end)))
-			return (free_struct(struct_pointer));
+			return (free_struct(&struct_pointer));
 		head = struct_pointer;
-		// struct_pointer->next = NULL;
 	}
 	else
 	{
@@ -69,10 +69,7 @@ t_struct	*init_list_for_path(t_node *end, t_struct *struct_pointer)
 		while (struct_pointer->next)
 			struct_pointer = struct_pointer->next;
 		if (!(struct_pointer->next = init_struct_res(end)))
-			return (free_struct(head));
-		// struct_pointer = struct_pointer->next;
-		// struct_pointer->next = NULL;
-		sort_path(&head);
+			return (free_struct(&head));
 	}
 	return (head);
 }

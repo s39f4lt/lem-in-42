@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 17:21:05 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/20 21:24:32 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/10/21 16:57:55 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ t_node	*init_node(char *name, int count_connect, int flag)
 	if (!(new_elem = (t_node *)malloc(sizeof(t_node))))
 		error();
 	start_mid_end_elem(new_elem, flag);
-	name ? (new_elem->name = ft_strdup(name)) : (new_elem->name = NULL);
+	if (name)
+		new_elem->name = ft_strdup(name);
+	else
+		new_elem->name = NULL;
 	new_elem->level = 0;
 	new_elem->accept = 0;
 	new_elem->count_connect = count_connect;
@@ -52,7 +55,7 @@ void	add_node(t_node **begin_list, char *name, int count_connect, int flag)
 		current = current->next;
 	if (!(new_elem = (t_node *)malloc(sizeof(t_node))))
 	{
-		free_nodes(*begin_list);
+		free_nodes(begin_list);
 		error();
 	}
 	start_mid_end_elem(new_elem, flag);

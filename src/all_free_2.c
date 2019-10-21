@@ -3,45 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   all_free_2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 20:00:54 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/20 15:59:17 by yperra-f         ###   ########.fr       */
+/*   Updated: 2019/10/21 20:22:04 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void		free_path(t_path *path)
+void		free_path(t_path **path)
 {
 	t_path	*next;
+	t_path	*copy;
 
+	if (!*path)
+		return ;
 	next = NULL;
-	while (path)
+	copy = *path;
+	while (copy)
 	{
-		if (path->next)
-			next = path->next;
-		free(path);
-		path = next;
+		if (copy->next)
+			next = copy->next;
+		//ft_memdel((void**)&copy->name);
+		ft_memdel((void**)&copy);
+		copy = next;
 		next = NULL;
 	}
+	*path = NULL;
 }
 
-t_struct	*free_struct(t_struct *struct_pointer)
+t_struct	*free_struct(t_struct **struct_pointer)
 {
 	t_struct	*next;
+	t_struct	*copy;
 
+	if (!*struct_pointer)
+		return (NULL);
 	next = NULL;
-	while (struct_pointer)
+	copy = *struct_pointer;
+	while (copy)
 	{
-		if (struct_pointer->next)
-			next = struct_pointer->next;
-		free_path(struct_pointer->path);
-		struct_pointer->length = 0;
-		struct_pointer->next = NULL;
-		free(struct_pointer);
-		struct_pointer = next;
+		if (copy->next)
+			next = copy->next;
+		free_path(&copy->path);
+		ft_memdel((void**)&copy);
+		copy = next;
 		next = NULL;
 	}
+	*struct_pointer = NULL;
 	return (NULL);
 }

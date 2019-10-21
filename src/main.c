@@ -6,14 +6,14 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 12:27:13 by yperra-f          #+#    #+#             */
-/*   Updated: 2019/10/18 19:54:12 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/10/21 17:45:56 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int main(void)
+int		main(void)
 {
-    lem_in();
-    return (0);
+	lem_in();
+	return (0);
 }

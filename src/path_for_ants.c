@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 12:31:13 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/21 21:07:46 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/10/22 17:24:35 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,9 @@ void		sort_path(t_struct **path)
 		next = current->next;
 	while (current && next)
 	{
-		// puts("bug");
 		if (current->length > next->length)
 		{
-			// puts("bug1");
-			// printf("current %d\n", current->length);
-			// printf("next %d\n", next->length);
 			current = swap_elems(&current, &next, &prev);
-			// puts("bug2");
-			// printf("current %d\n", current->length);
-			// printf("next %d\n", next->length);
 			if (prev)
 				current = prev;
 			continue ;

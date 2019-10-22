@@ -6,7 +6,7 @@
 #    By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/08 14:50:16 by idunaver          #+#    #+#              #
-#    Updated: 2019/10/21 17:25:14 by idunaver         ###   ########.fr        #
+#    Updated: 2019/10/22 19:18:14 by idunaver         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,8 @@ SRC_LEM-IN_NAME = main.c \
 				  output_book.c \
 				  prints.c \
 				  init_struct.c \
-				  array_node.c
+				  array_node.c \
+				  print_result.c
 
 OBJ_LEM-IN_NAME = $(SRC_LEM-IN_NAME:.c=.o);
 SRC_LEM-IN = $(addprefix $(OBJDIR)/, $(SRC_LEM-IN_NAME))

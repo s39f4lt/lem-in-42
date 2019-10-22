@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 15:06:43 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/21 17:45:49 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/10/22 22:14:00 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,23 @@ typedef struct			s_struct
 	int					length;
 	struct s_struct		*next;
 }						t_struct;
+
+typedef struct			s_ant
+{
+	int					id;
+	int					length;
+	t_path				*node;
+	t_path				*path;
+}						t_ant;
+
+
+typedef struct			s_group
+{
+	int 				count;
+	int					length;
+	t_path				*way;
+}						t_group;
+
 
 /* check_repeat */
 int						check_repeat_coord(int *x, int *y);
@@ -157,5 +174,7 @@ int						init_struct(t_lem_arifmetic *env_math, t_links **links, t_node **node);
 int						array_node(t_node *node, t_links *links);
 void					init_node_arr(t_node *node, t_links *links);
 void					count_connect(t_node *node, t_links *links);
+/* print_result */
+void					go_ants(t_lem_arifmetic *env_math, t_struct *pointer_struct);
 
 #endif

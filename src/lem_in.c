@@ -6,7 +6,7 @@
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 15:56:58 by idunaver          #+#    #+#             */
-/*   Updated: 2019/10/21 21:19:26 by idunaver         ###   ########.fr       */
+/*   Updated: 2019/10/22 19:19:52 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,9 @@ void		lem_in(void)
 		else
 			break ;
 	}
-	// print_path(struct_pointer);
-	// printf("\ncount-path: %d\n", env_math.count_path);
+	print_path(struct_pointer);
+	printf("\ncount-path: %d\n", env_math.count_path);
+	go_ants(&env_math, struct_pointer);
 	free_nodes(&node);
 	free_struct(&struct_pointer);
 	clear_adj_matrix(env_math.matrix, env_math.count_rooms);

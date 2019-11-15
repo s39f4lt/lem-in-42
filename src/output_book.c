@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validation.c                                       :+:      :+:    :+:   */
+/*   output_book.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/02 16:58:29 by rgendry           #+#    #+#             */
-/*   Updated: 2019/10/06 21:15:56 by idunaver         ###   ########.fr       */
+/*   Created: 2019/10/21 15:18:00 by idunaver          #+#    #+#             */
+/*   Updated: 2019/10/24 18:39:00 by idunaver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-t_lem	*make_lem()
+void	cat_in_book(t_lem_arifmetic **env_math)
 {
-	t_lem	*new;
+	char	*copy;
 
-	if (!(new = (t_lem*)malloc(sizeof(t_lem))))
-		return (NULL);
-	new->ants = 0;
-	new->end = NULL;
-	new->start = NULL;
-	new->nodes = NULL;
-	new->links = NULL;
-	return (new);
-}
-
-void	validation()
-{
-	t_lem *lem;
-
-	lem = make_lem();
-	get_ants(lem);
-	get_data(lem);
+	copy = ft_strnew(ft_strlen((*env_math)->book) + \
+	ft_strlen((*env_math)->line) + 1);
+	ft_strcat(copy, (*env_math)->book);
+	ft_strcat(copy, (*env_math)->line);
+	ft_strcat(copy, "\n");
+	ft_strdel(&(*env_math)->line);
+	ft_strdel(&(*env_math)->book);
+	(*env_math)->book = copy;
 }

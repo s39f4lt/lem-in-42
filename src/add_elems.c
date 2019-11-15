@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   add_elems.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/02 13:35:39 by ramory-l          #+#    #+#             */
-/*   Updated: 2019/10/24 21:35:31 by yperra-f         ###   ########.fr       */
+/*   Created: 2019/10/24 20:28:41 by yperra-f          #+#    #+#             */
+/*   Updated: 2019/10/24 20:29:17 by yperra-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "lem_in.h"
 
-# define BUFF_SIZE 32
-# define MAX_FD 10240
+void	ft_connect(t_links **links, char **elem)
+{
+	if (!*links)
+		*links = init_links(elem);
+	else
+		add_links(*links, elem);
+}
 
-# include <fcntl.h>
-# include <sys/types.h>
-# include <sys/uio.h>
-# include <unistd.h>
-# include "libft.h"
-
-int		get_next_line(const int fd, char **line);
-
-#endif
+void	ft_node(t_node **node, char **elem, int flag)
+{
+	if (!*node)
+		*node = init_node(elem[0], 0, flag);
+	else
+		add_node(node, elem[0], 0, flag);
+	ft_free(elem);
+}

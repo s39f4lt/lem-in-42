@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   end_node.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/02 13:35:39 by ramory-l          #+#    #+#             */
-/*   Updated: 2019/10/24 21:35:31 by yperra-f         ###   ########.fr       */
+/*   Created: 2019/10/24 20:33:55 by yperra-f          #+#    #+#             */
+/*   Updated: 2019/10/24 20:34:29 by yperra-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "lem_in.h"
 
-# define BUFF_SIZE 32
-# define MAX_FD 10240
+t_node			*end_node(t_node *node)
+{
+	if (!node)
+		return (NULL);
+	while (node->next)
+		node = node->next;
+	return (node);
+}
 
-# include <fcntl.h>
-# include <sys/types.h>
-# include <sys/uio.h>
-# include <unistd.h>
-# include "libft.h"
-
-int		get_next_line(const int fd, char **line);
-
-#endif
+t_node			*end_is_found(t_node *node, t_lem_arifmetic *env_math, \
+t_queque **queque, t_node *end)
+{
+	free_queque(queque);
+	fill_matrix(node, env_math);
+	null_accept_and_matrix(node, env_math);
+	null_parent(node, env_math);
+	return (end);
+}

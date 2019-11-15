@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: idunaver <idunaver@student.42.fr>          +#+  +:+       +#+         #
+#    By: yperra-f <yperra-f@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/08 14:50:16 by idunaver          #+#    #+#              #
-#    Updated: 2019/10/06 21:01:57 by idunaver         ###   ########.fr        #
+#    Updated: 2019/10/24 21:53:28 by yperra-f         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,13 +17,40 @@ SRCDIR = src
 LIBDIR = libft
 HEADER = -I ./include
 HEADER_LIBFT = -I ./libft/include -I ./libft/src/ft_printf/include
-FLAGS = -Wall -Wextra -Werror -g
+FLAGS = -Wall -Wextra -Werror
 
 LEM-IN = lem-in
 SRC_LEM-IN_NAME = main.c \
 				  error.c \
-				  validation.c \
-				  get_data.c
+				  node.c \
+				  links.c \
+				  lem_in.c \
+				  id_node.c \
+				  get_ants.c \
+				  quick_sort.c \
+				  check_repeat.c \
+				  adj_matrix.c \
+				  breadth_first_search.c \
+				  queque.c \
+				  path_for_ants.c \
+				  create_path.c \
+				  nuller.c \
+				  all_free_1.c \
+				  all_free_2.c \
+				  valid.c \
+				  output_book.c \
+				  prints.c \
+				  init_struct.c \
+				  array_node.c \
+				  print_result.c \
+				  all_free.c \
+				  check_dup.c \
+				  init_for_print_result.c \
+				  regex.c \
+				  add_elems.c \
+				  add_node.c \
+				  end_node.c \
+				  search_add.c
 
 OBJ_LEM-IN_NAME = $(SRC_LEM-IN_NAME:.c=.o);
 SRC_LEM-IN = $(addprefix $(OBJDIR)/, $(SRC_LEM-IN_NAME))
@@ -47,7 +74,7 @@ clean:
 
 fclean: clean
 	@make fclean -C $(LIBDIR)
-	@rm -Rf $(LEM_IN)
+	@rm -Rf $(LEM-IN)
 
 re: fclean all
 
